@@ -1,0 +1,38 @@
+.board{
+  width: 300px;
+  margin: auto;
+  background-color: bisque;
+}
+
+.sqr{
+  min-width: 80px;
+  max-width: 80px;
+  height: 80px;
+  max-height: 80px;
+  min-height: 80px;
+  margin: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: beige;
+  font-size: 60px;
+  text-align: center;
+}
+
+.sqr:hover{
+  cursor: pointer;
+  background-color: #8bc3ff;
+}
+
+
+.mark{
+  font-size: 60px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  max-height: 80px;
+  padding-bottom: 10px;
+}
+
+.tab{
+  width: 400px;
+}

@@ -11,6 +11,43 @@
   <title>Title</title>
 </head>
 
+<body class="bg-primary">
+
+  <div class="tab bg-light rounded shadow-lg mx-auto my-4 p-4">
+
+    <div class="d-flex justify-content-center flex-column">
+      <h1 class="my-2 text-center">Tic-Tac-Toe</h1>
+      <button id="rest" type="button" class="btn btn-warning mx-auto my-2" onclick="location.reload()">Restart</button>
+    </div>
+  
+    <div class="w-100 mx-auto" id="form" >
+      <form id="user-log">
+        <div class="form-group">
+          <label for="nameUserX">User X name</label>
+          <input type="text" class="form-control" id="nameUserX" aria-describedby="User X" value="Player1">
+        </div>
+  
+        <div class="form-group">
+          <input type="hidden" class="form-control" id="markerX" aria-describedby="X" value="X">
+        </div>
+  
+        <div class="form-group">
+          <label for="nameUserO">User O name</label>
+          <input type="text" class="form-control" id="nameUserO" aria-describedby="User O" value="Player2">
+        </div>
+  
+        <div class="form-group">
+          <input type="hidden" class="form-control" id="markerO" aria-describedby="O" value="O">
+        </div>
+       
+        <button id="init" type="button" class="btn btn-warning" onclick="game.set()">Start Game</button>
+      </form>
+    </div>
+  
+    <div id="cont"></div>
+
+  </div>
+  
 
   
 
