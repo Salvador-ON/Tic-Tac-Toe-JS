@@ -7,6 +7,9 @@ const gameboard = () => ({
 });
 
 class TicTacToeGame {
+  constructor(){
+    this.domManipulation = new DomMan();
+  }
   start(playerX, playerO, board) {
     this.playerX = playerX;
     this.playerO = playerO;
@@ -17,26 +20,11 @@ class TicTacToeGame {
 
 
   drawBoard() {
-    document.getElementById('cont').innerHTML = '';
-    document.getElementById('form').innerHTML = '';
-    const turnDisplay = document.createElement('div');
-    turnDisplay.id = 'turnDisplay';
-    turnDisplay.innerHTML = `Your turn ${this.currentPlayer.name}`;
-    turnDisplay.classList.add('text-center', 'text-primary', 'font-weight-bold', 'h2', 'pt-4');
-    document.getElementById('cont').appendChild(turnDisplay);
-
-    const gameBoard = document.createElement('div');
-    gameBoard.id = 'gameBoard';
-    gameBoard.classList.add('board', 'd-flex', 'bg-warning', 'flex-wrap');
+    this.domManipulation.clearWindow()
+    this.domManipulation.displayturn(this.currentPlayer)
+    const gameBoard = this.domManipulation.createBoard()
     gameBoard.addEventListener('click', this.squareClick.bind(this));
-
-    this.board.arrayboard.forEach((box, index) => {
-      const sqr = document.createElement('div');
-      sqr.id = index;
-      sqr.classList.add('sqr');
-      gameBoard.appendChild(sqr);
-    });
-    document.getElementById('cont').appendChild(gameBoard);
+    this.domManipulation.createSqr(this.board,gameBoard);
   }
 
   squareClick(event) {
@@ -46,27 +34,17 @@ class TicTacToeGame {
   executeMove(movement) {
     if (this.board.arrayboard[movement] === '' && !this.gameHasWinner()) {
       this.board.arrayboard[movement] = this.currentPlayer.marker;
-      this.updateBoard();
+      this.domManipulation.updateBoard(this.board);
       if (!this.gameHasWinner()) {
         if (this.gamenoWinner()) {
-          this.displaytie();
+          this.domManipulation.displaytie(this.playerX, this.playerO);
         }
         this.currentPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
-        document.getElementById('turnDisplay').innerHTML = `Your turn ${this.currentPlayer.name}`;
+        this.domManipulation.changeTurn(this.currentPlayer);
       } else {
-        this.displayWinner();
+        this.domManipulation.displayWinner(this.currentPlayer);
       }
     }
-  }
-
-  updateBoard() {
-    const gameBoard = document.getElementById('gameBoard');
-    const sqr = gameBoard.childNodes;
-    sqr.forEach((element, index) => {
-      if (element.innerText !== this.board.arrayboard[index]) {
-        element.innerText = this.board.arrayboard[index]; // eslint-disable-line no-param-reassign
-      }
-    });
   }
 
   gameHasWinner() {
@@ -90,8 +68,12 @@ class TicTacToeGame {
     }
     return true;
   }
+}
 
-  displayWinner() {
+
+class DomMan {
+  displayWinner(currentPlayer) {
+    this.currentPlayer = currentPlayer;
     const message = document.createElement('div');
     message.id = 'message';
     message.classList.add('text-center', 'text-warning', 'font-weight-bold', 'h2', 'pt-4');
@@ -100,7 +82,9 @@ class TicTacToeGame {
     document.getElementById('cont').appendChild(message);
   }
 
-  displaytie() {
+  displaytie(playerX, playerO) {
+    this.playerX = playerX;
+    this.playerO = playerO;
     const message = document.createElement('div');
     message.id = 'message';
     message.classList.add('text-center', 'text-warning', 'font-weight-bold', 'h2', 'pt-4');
@@ -108,8 +92,53 @@ class TicTacToeGame {
     document.getElementById('turnDisplay').innerHTML = '';
     document.getElementById('cont').appendChild(message);
   }
-}
+  displayturn(currentPlayer){
+    this.currentPlayer = currentPlayer
+    const turnDisplay = document.createElement('div');
+    turnDisplay.id = 'turnDisplay';
+    turnDisplay.innerHTML = `Your turn ${this.currentPlayer.name}`;
+    turnDisplay.classList.add('text-center', 'text-primary', 'font-weight-bold', 'h2', 'pt-4');
+    document.getElementById('cont').appendChild(turnDisplay);
+  }
 
+  changeTurn(currentPlayer){
+    this.currentPlayer = currentPlayer;
+    document.getElementById('turnDisplay').innerHTML = `Your turn ${this.currentPlayer.name}`;
+  }
+
+  updateBoard(board) {
+    this.board = board
+    const gameBoard = document.getElementById('gameBoard');
+    const sqr = gameBoard.childNodes;
+    sqr.forEach((element, index) => {
+      if (element.innerText !== this.board.arrayboard[index]) {
+        element.innerText = this.board.arrayboard[index]; // eslint-disable-line no-param-reassign
+      }
+    });
+  }
+
+  clearWindow(){
+    document.getElementById('cont').innerHTML = '';
+    document.getElementById('form').innerHTML = '';
+  }
+  createBoard(){
+    const gameBoard = document.createElement('div');
+    gameBoard.id = 'gameBoard';
+    gameBoard.classList.add('board', 'd-flex', 'bg-warning', 'flex-wrap');
+    return gameBoard
+  }
+
+  createSqr(board, gameBoard){
+    this.board = board;
+    this.board.arrayboard.forEach((box, index) => {
+      const sqr = document.createElement('div');
+      sqr.id = index;
+      sqr.classList.add('sqr');
+      gameBoard.appendChild(sqr);
+    });
+    document.getElementById('cont').appendChild(gameBoard);
+  }
+}
 
 const run = () => {
   const playerX = player(document.getElementById('nameUserX').value, 'X');
