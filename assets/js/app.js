@@ -1,31 +1,30 @@
+const player = (name, marker) => ({ name, marker });
+
+const gameboard = () => ({
+  arrayboard: ['', '', '',
+    '', '', '',
+    '', '', ''],
+});
+
 class TicTacToeGame {
-  player(name, marker) {
-    return { name, marker };
-  }
-
-  board() {
-    return {
-      arrayboard: ['', '', '',
-        '', '', '',
-        '', '', ''],
-    };
-  }
-
-  set() {
-    this.playerX = this.player(document.getElementById('nameUserX').value, 'X');
-    this.playerO = this.player(document.getElementById('nameUserO').value, 'O');
-    this.start();
-  }
-
-  start() {
-    this.board = this.board();
+  start(playerX, playerO, board) {
+    this.playerX = playerX;
+    this.playerO = playerO;
+    this.board = board;
     this.currentPlayer = this.playerX;
     this.drawBoard();
   }
 
+
   drawBoard() {
     document.getElementById('cont').innerHTML = '';
     document.getElementById('form').innerHTML = '';
+    const turnDisplay = document.createElement('div');
+    turnDisplay.id = 'turnDisplay';
+    turnDisplay.innerHTML = `Your turn ${this.currentPlayer.name}`;
+    turnDisplay.classList.add('text-center', 'text-primary', 'font-weight-bold', 'h2', 'pt-4');
+    document.getElementById('cont').appendChild(turnDisplay);
+
     const gameBoard = document.createElement('div');
     gameBoard.id = 'gameBoard';
     gameBoard.classList.add('board', 'd-flex', 'bg-warning', 'flex-wrap');
@@ -53,6 +52,7 @@ class TicTacToeGame {
           this.displaytie();
         }
         this.currentPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
+        document.getElementById('turnDisplay').innerHTML = `Your turn ${this.currentPlayer.name}`;
       } else {
         this.displayWinner();
       }
@@ -64,7 +64,7 @@ class TicTacToeGame {
     const sqr = gameBoard.childNodes;
     sqr.forEach((element, index) => {
       if (element.innerText !== this.board.arrayboard[index]) {
-        element.innerText = this.board.arrayboard[index];
+        element.innerText = this.board.arrayboard[index]; // eslint-disable-line no-param-reassign
       }
     });
   }
@@ -96,6 +96,7 @@ class TicTacToeGame {
     message.id = 'message';
     message.classList.add('text-center', 'text-warning', 'font-weight-bold', 'h2', 'pt-4');
     message.innerHTML = ` Congratulations ${this.currentPlayer.name} Win`;
+    document.getElementById('turnDisplay').innerHTML = '';
     document.getElementById('cont').appendChild(message);
   }
 
@@ -104,8 +105,16 @@ class TicTacToeGame {
     message.id = 'message';
     message.classList.add('text-center', 'text-warning', 'font-weight-bold', 'h2', 'pt-4');
     message.innerHTML = `${this.playerX.name} and ${this.playerO.name} it's a tie, play agian`;
+    document.getElementById('turnDisplay').innerHTML = '';
     document.getElementById('cont').appendChild(message);
   }
 }
 
-const game = new TicTacToeGame();
+
+function run() { // eslint-disable-line no-unused-vars
+  const playerX = player(document.getElementById('nameUserX').value, 'X');
+  const playerO = player(document.getElementById('nameUserO').value, 'O');
+  const board = gameboard();
+  const game = new TicTacToeGame();
+  game.start(playerX, playerO, board);
+}
