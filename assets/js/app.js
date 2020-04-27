@@ -111,10 +111,14 @@ class TicTacToeGame {
 }
 
 
-function run() { // eslint-disable-line no-unused-vars
+function run() {
   const playerX = player(document.getElementById('nameUserX').value, 'X');
   const playerO = player(document.getElementById('nameUserO').value, 'O');
   const board = gameboard();
   const game = new TicTacToeGame();
   game.start(playerX, playerO, board);
 }
+
+
+const button = document.getElementById('init');
+button.addEventListener('click', () => { run(); });
