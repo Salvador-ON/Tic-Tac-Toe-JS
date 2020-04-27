@@ -111,7 +111,7 @@ class TicTacToeGame {
 }
 
 
-function run() {
+const run = () => {
   const playerX = player(document.getElementById('nameUserX').value, 'X');
   const playerO = player(document.getElementById('nameUserO').value, 'O');
   const board = gameboard();
