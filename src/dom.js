@@ -46,12 +46,12 @@ class DomMan {
     });
   }
 
-  clearWindow() {
+  static clearWindow() {
     document.getElementById('cont').innerHTML = '';
     document.getElementById('form').innerHTML = '';
   }
 
-  createBoard() {
+  static createBoard() {
     const gameBoard = document.createElement('div');
     gameBoard.id = 'gameBoard';
     gameBoard.classList.add('board', 'd-flex', 'bg-warning', 'flex-wrap');

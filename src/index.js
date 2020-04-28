@@ -23,9 +23,9 @@ class TicTacToeGame {
 
 
   drawBoard() {
-    this.domManipulation.clearWindow();
+    DomMan.clearWindow();
     this.domManipulation.displayturn(this.currentPlayer);
-    const gameBoard = this.domManipulation.createBoard();
+    const gameBoard = DomMan.createBoard();
     gameBoard.addEventListener('click', this.squareClick.bind(this));
     this.domManipulation.createSqr(this.board, gameBoard);
   }
