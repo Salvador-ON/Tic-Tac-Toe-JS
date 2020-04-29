@@ -2,7 +2,7 @@
 
 A Tic Tac Toe game you can play in your browser!
 
-![](assets/media/screensahot.png)
+![](dist/assets/media/screensahot.PNG)
 
 # Live Demo
 
