@@ -1,0 +1,35 @@
+{
+  "name": "tic-tac-toe-js",
+  "version": "1.0.0",
+  "description": "Tic-Tac-Toe with JS",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "webpack-dev-server",
+    "build": "webpack",
+    "development": "webpack --env dev",
+    "start": "webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salvador-ON/Tic-Tac-Toe-JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Salvador-ON/Tic-Tac-Toe-JS/issues"
+  },
+  "homepage": "https://github.com/Salvador-ON/Tic-Tac-Toe-JS#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babelify": "^10.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {}
+}
