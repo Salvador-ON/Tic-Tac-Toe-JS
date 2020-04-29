@@ -6,7 +6,7 @@ A Tic Tac Toe game you can play in your browser!
 
 # Live Demo
 
-[Live demo](https://raw.githack.com/Salvador-ON/Tic-Tac-Toe-JS/game-build/index.html)
+[Live demo](https://salvador-on.github.io/Tic-Tac-Toe-JS/.)
 
 # What it does
 
