@@ -10,8 +10,8 @@ A Tic Tac Toe game you can play in your browser!
 
 # What it does
 
-- The users can log the their name and start playing
-- The game has the winning logic so it will stop when someone wins or if it's a iie
+- The users can log their name and start playing
+- The game has the winning logic so it will stop when someone wins or if it's a tie.
 
 ## Author
 
