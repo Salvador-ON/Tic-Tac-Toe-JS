@@ -1,23 +1,20 @@
 import DomMan from './dom';
+import GameLogic from './gameLogic';
+import factory from './factory';
 
-const player = (name, marker) => ({ name, marker });
 
-const gameboard = () => ({
-  arrayboard: ['', '', '',
-    '', '', '',
-    '', '', ''],
-});
 
 class TicTacToeGame {
   constructor() {
     this.domManipulation = new DomMan(); // eslint-disable-line no-unused-vars
+    this.gameLogicObj = new GameLogic ();
   }
 
   start(playerX, playerO, board) {
     this.playerX = playerX;
     this.playerO = playerO;
     this.board = board;
-    this.currentPlayer = this.playerX;
+    this.currentPlayer = this.gameLogicObj.setCurrentPlayer(this.playerX);
     this.drawBoard();
   }
 
@@ -35,11 +32,11 @@ class TicTacToeGame {
   }
 
   executeMove(movement) {
-    if (this.board.arrayboard[movement] === '' && !this.gameHasWinner()) {
+    if (this.board.arrayboard[movement] === '' && !this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
       this.board.arrayboard[movement] = this.currentPlayer.marker;
       this.domManipulation.updateBoard(this.board);
-      if (!this.gameHasWinner()) {
-        if (this.gamenoWinner()) {
+      if (!this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
+        if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
           this.domManipulation.displaytie(this.playerX, this.playerO);
         }
         this.currentPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
@@ -49,35 +46,13 @@ class TicTacToeGame {
       }
     }
   }
-
-  gameHasWinner() {
-    const winningCombos = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      [0, 4, 8], [2, 4, 6],
-    ];
-
-    return winningCombos.find((combo) => {
-      if (this.board.arrayboard[combo[0]] !== '' && this.board.arrayboard[combo[1]] !== '' && this.board.arrayboard[combo[2]] !== '' && this.board.arrayboard[combo[0]] === this.board.arrayboard[combo[1]] && this.board.arrayboard[combo[1]] === this.board.arrayboard[combo[2]]) {
-        return true;
-      }
-      return false;
-    });
-  }
-
-  gamenoWinner() {
-    for (let i = 0; i < this.board.arrayboard.length; i += 1) {
-      if (this.board.arrayboard[i] === '') return false;
-    }
-    return true;
-  }
 }
 
 const run = () => {
-  const playerX = player(document.getElementById('nameUserX').value, 'X');
-  const playerO = player(document.getElementById('nameUserO').value, 'O');
-  const board = gameboard();
   const game = new TicTacToeGame();
+  const playerX =  factory.player(document.getElementById('nameUserX').value, 'X');
+  const playerO = factory.player(document.getElementById('nameUserO').value, 'O');
+  const board = factory.gameboard();
   game.start(playerX, playerO, board);
 };
 
