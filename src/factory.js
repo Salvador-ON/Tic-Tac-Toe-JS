@@ -1,11 +1,11 @@
 
-  const player = (name, marker) => ({ name, marker });
+const player = (name, marker) => ({ name, marker });
 
-  const gameboard = () => ({
-    arrayboard: ['', '', '',
-      '', '', '',
-      '', '', ''],
-  });
+const gameboard = () => ({
+  arrayboard: ['', '', '',
+    '', '', '',
+    '', '', ''],
+});
 
 
-export default {player, gameboard};
+export default { player, gameboard };

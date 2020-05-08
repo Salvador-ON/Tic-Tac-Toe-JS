@@ -1,11 +1,8 @@
 
-
 class GameLogic {
-
-
   setCurrentPlayer(player) {
     this.currentPlayer = player;
-    return this.currentPlayer
+    return this.currentPlayer;
   }
 
   gameHasWinner(arrayBoard) {
@@ -34,5 +31,3 @@ class GameLogic {
 }
 
 export default GameLogic;
-
-

@@ -3,11 +3,10 @@ import GameLogic from './gameLogic';
 import factory from './factory';
 
 
-
 class TicTacToeGame {
   constructor() {
     this.domManipulation = new DomMan(); // eslint-disable-line no-unused-vars
-    this.gameLogicObj = new GameLogic ();
+    this.gameLogicObj = new GameLogic();
   }
 
   start(playerX, playerO, board) {
@@ -50,7 +49,7 @@ class TicTacToeGame {
 
 const run = () => {
   const game = new TicTacToeGame();
-  const playerX =  factory.player(document.getElementById('nameUserX').value, 'X');
+  const playerX = factory.player(document.getElementById('nameUserX').value, 'X');
   const playerO = factory.player(document.getElementById('nameUserO').value, 'O');
   const board = factory.gameboard();
   game.start(playerX, playerO, board);

@@ -169,13 +169,10 @@ class DomMan {
 
 // CONCATENATED MODULE: ./src/gameLogic.js
 
-
 class GameLogic {
-
-
   setCurrentPlayer(player) {
     this.currentPlayer = player;
-    return this.currentPlayer
+    return this.currentPlayer;
   }
 
   gameHasWinner(arrayBoard) {
@@ -205,22 +202,20 @@ class GameLogic {
 
 /* harmony default export */ var gameLogic = (GameLogic);
 
-
-
 // CONCATENATED MODULE: ./src/factory.js
 
-  const player = (name, marker) => ({ name, marker });
+const player = (name, marker) => ({ name, marker });
 
-  const gameboard = () => ({
-    arrayboard: ['', '', '',
-      '', '', '',
-      '', '', ''],
-  });
+const gameboard = () => ({
+  arrayboard: ['', '', '',
+    '', '', '',
+    '', '', ''],
+});
 
 
-/* harmony default export */ var factory = ({player, gameboard});
+/* harmony default export */ var factory = ({ player, gameboard });
+
 // CONCATENATED MODULE: ./src/index.js
-
 
 
 
@@ -229,7 +224,7 @@ class GameLogic {
 class src_TicTacToeGame {
   constructor() {
     this.domManipulation = new dom(); // eslint-disable-line no-unused-vars
-    this.gameLogicObj = new gameLogic ();
+    this.gameLogicObj = new gameLogic();
   }
 
   start(playerX, playerO, board) {
@@ -272,7 +267,7 @@ class src_TicTacToeGame {
 
 const run = () => {
   const game = new src_TicTacToeGame();
-  const playerX =  factory.player(document.getElementById('nameUserX').value, 'X');
+  const playerX = factory.player(document.getElementById('nameUserX').value, 'X');
   const playerO = factory.player(document.getElementById('nameUserO').value, 'O');
   const board = factory.gameboard();
   game.start(playerX, playerO, board);
