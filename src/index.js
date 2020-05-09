@@ -38,7 +38,7 @@ class TicTacToeGame {
         if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
           this.domManipulation.displaytie(this.playerX, this.playerO);
         }
-        this.currentPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
+        this.currentPlayer = this.gameLogicObj.swap(this.currentPlayer, this.playerX, this.playerO);
         this.domManipulation.changeTurn(this.currentPlayer);
       } else {
         this.domManipulation.displayWinner(this.currentPlayer);

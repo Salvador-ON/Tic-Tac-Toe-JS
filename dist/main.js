@@ -198,9 +198,19 @@ class GameLogic {
     }
     return true;
   }
+
+  swap(currentPlayer, playerX, playerO) {
+    this.currentPlayer = currentPlayer;
+    this.playerX = playerX;
+    this.playerO = playerO;
+    const swapPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
+    return swapPlayer;
+  }
 }
 
 /* harmony default export */ var gameLogic = (GameLogic);
+
+// module.exports = GameLogic;
 
 // CONCATENATED MODULE: ./src/factory.js
 
@@ -214,6 +224,11 @@ const gameboard = () => ({
 
 
 /* harmony default export */ var factory = ({ player, gameboard });
+
+// module.exports = {
+//   player,
+//   gameboard,
+// };
 
 // CONCATENATED MODULE: ./src/index.js
 
@@ -256,7 +271,7 @@ class src_TicTacToeGame {
         if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
           this.domManipulation.displaytie(this.playerX, this.playerO);
         }
-        this.currentPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
+        this.currentPlayer = this.gameLogicObj.swap(this.currentPlayer, this.playerX, this.playerO);
         this.domManipulation.changeTurn(this.currentPlayer);
       } else {
         this.domManipulation.displayWinner(this.currentPlayer);

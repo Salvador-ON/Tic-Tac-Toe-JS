@@ -28,6 +28,16 @@ class GameLogic {
     }
     return true;
   }
+
+  swap(currentPlayer, playerX, playerO) {
+    this.currentPlayer = currentPlayer;
+    this.playerX = playerX;
+    this.playerO = playerO;
+    const swapPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
+    return swapPlayer;
+  }
 }
 
 export default GameLogic;
+
+// module.exports = GameLogic;
