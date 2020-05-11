@@ -36,6 +36,10 @@ class GameLogic {
     const swapPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
     return swapPlayer;
   }
+
+  executeMove(movement, board, player ) {
+    board[movement] = player.marker;
+  }
 }
 
 export default GameLogic;

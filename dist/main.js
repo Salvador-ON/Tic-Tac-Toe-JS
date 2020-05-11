@@ -206,6 +206,10 @@ class GameLogic {
     const swapPlayer = (this.currentPlayer === this.playerX ? this.playerO : this.playerX);
     return swapPlayer;
   }
+
+  executeMove(movement, board, player ) {
+    board[movement] = player.marker;
+  }
 }
 
 /* harmony default export */ var gameLogic = (GameLogic);
@@ -260,22 +264,23 @@ class src_TicTacToeGame {
   }
 
   squareClick(event) {
-    this.executeMove(event.target.id);
+    const movement = event.target.id;
+    if (this.board.arrayboard[movement] === '' && !this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
+      this.gameLogicObj.executeMove(movement, this.board.arrayboard, this.currentPlayer);
+      this.domManipulation.updateBoard(this.board);
+      this.checkWinner();
+    }
   }
 
-  executeMove(movement) {
-    if (this.board.arrayboard[movement] === '' && !this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
-      this.board.arrayboard[movement] = this.currentPlayer.marker;
-      this.domManipulation.updateBoard(this.board);
-      if (!this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
-        if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
-          this.domManipulation.displaytie(this.playerX, this.playerO);
-        }
-        this.currentPlayer = this.gameLogicObj.swap(this.currentPlayer, this.playerX, this.playerO);
-        this.domManipulation.changeTurn(this.currentPlayer);
-      } else {
-        this.domManipulation.displayWinner(this.currentPlayer);
+  checkWinner() {
+    if (!this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
+      if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
+        this.domManipulation.displaytie(this.playerX, this.playerO);
       }
+      this.currentPlayer = this.gameLogicObj.swap(this.currentPlayer, this.playerX, this.playerO);
+      this.domManipulation.changeTurn(this.currentPlayer);
+    } else {
+      this.domManipulation.displayWinner(this.currentPlayer);
     }
   }
 }

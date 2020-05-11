@@ -27,16 +27,15 @@ class TicTacToeGame {
   }
 
   squareClick(event) {
-
+    const movement = event.target.id;
     if (this.board.arrayboard[movement] === '' && !this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
-      this.executeMove(event.target.id);
+      this.gameLogicObj.executeMove(movement, this.board.arrayboard, this.currentPlayer);
+      this.domManipulation.updateBoard(this.board);
+      this.checkWinner();
     }
   }
 
-  executeMove(movement) {
-
-    this.board.arrayboard[movement] = this.currentPlayer.marker;
-    this.domManipulation.updateBoard(this.board);
+  checkWinner() {
     if (!this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
       if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
         this.domManipulation.displaytie(this.playerX, this.playerO);
@@ -46,7 +45,6 @@ class TicTacToeGame {
     } else {
       this.domManipulation.displayWinner(this.currentPlayer);
     }
-
   }
 }
 
