@@ -20,6 +20,28 @@ A Tic Tac Toe game you can play in your browser!
 - Github: [@Salvador-ON](https://github.com/Salvador-ON)
 - Twitter: [@Salvador Olvera_ON](https://twitter.com/Salvador_ON) 
 
+**Mohamed Naser**
+- Linkedin: [Mohamed Naser](https://www.linkedin.com/in/mohamed-naser-amein/)
+
+## Setup
+
+Open your git bash and cd to the location you'd like to put your files the run the command below.
+
+```console
+git clone https://github.com/Salvador-ON/Tic-Tac-Toe-JS.git
+```
+Install Dependances
+```console
+npm install
+```
+Run Unit Testing 
+```console
+npm test
+```
+Make Wepback Watch the project files 
+```console
+npx webpack --watch
+```
 
 ## Contributing
 
