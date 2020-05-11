@@ -1,7 +1,6 @@
-import gameLogic from '../gameLogic';
-import {gameboard, player} from '../factory';
+import GameLogic from '../gameLogic';
 
-const gameLocigObj = new gameLogic();
+const gameLocigObj = new GameLogic();
 
 const playerX = {
   name: 'Salvador',
@@ -79,12 +78,10 @@ test('incorrect swap player Salvador To Salvador', () => {
   expect(gameLocigObj.swap(playerX, playerX, playerO)).not.toBe(playerX);
 });
 
-test ('Make X wins ', () => {
-
+test('Make X wins ', () => {
   gambeboard.board = ['X', 'O', 'X',
-                      'O', 'X', '',
-                      '', 'O', 'X'];
+    'O', 'X', '',
+    '', 'O', 'X'];
 
-expect(gameLocigObj.gameHasWinner(gambeboard.board)).not.toBeUndefined();
-  
+  expect(gameLocigObj.gameHasWinner(gambeboard.board)).not.toBeUndefined();
 });

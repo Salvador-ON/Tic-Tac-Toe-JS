@@ -37,7 +37,9 @@ class GameLogic {
     return swapPlayer;
   }
 
-  executeMove(movement, board, player ) {
+  // eslint-disable-next-line class-methods-use-this
+  executeMove(movement, board, player) {
+    // eslint-disable-next-line no-param-reassign
     board[movement] = player.marker;
   }
 }
