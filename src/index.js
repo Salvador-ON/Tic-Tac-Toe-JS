@@ -27,23 +27,26 @@ class TicTacToeGame {
   }
 
   squareClick(event) {
-    this.executeMove(event.target.id);
+
+    if (this.board.arrayboard[movement] === '' && !this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
+      this.executeMove(event.target.id);
+    }
   }
 
   executeMove(movement) {
-    if (this.board.arrayboard[movement] === '' && !this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
-      this.board.arrayboard[movement] = this.currentPlayer.marker;
-      this.domManipulation.updateBoard(this.board);
-      if (!this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
-        if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
-          this.domManipulation.displaytie(this.playerX, this.playerO);
-        }
-        this.currentPlayer = this.gameLogicObj.swap(this.currentPlayer, this.playerX, this.playerO);
-        this.domManipulation.changeTurn(this.currentPlayer);
-      } else {
-        this.domManipulation.displayWinner(this.currentPlayer);
+
+    this.board.arrayboard[movement] = this.currentPlayer.marker;
+    this.domManipulation.updateBoard(this.board);
+    if (!this.gameLogicObj.gameHasWinner(this.board.arrayboard)) {
+      if (this.gameLogicObj.gamenoWinner(this.board.arrayboard)) {
+        this.domManipulation.displaytie(this.playerX, this.playerO);
       }
+      this.currentPlayer = this.gameLogicObj.swap(this.currentPlayer, this.playerX, this.playerO);
+      this.domManipulation.changeTurn(this.currentPlayer);
+    } else {
+      this.domManipulation.displayWinner(this.currentPlayer);
     }
+
   }
 }
 

@@ -36,7 +36,7 @@ test('game has a winner', () => {
   expect(gameLocigObj.gameHasWinner(gambeboard.board)).not.toBeUndefined();
 });
 
-test('game with out winning combinatio', () => {
+test('game with out winning combination', () => {
   gambeboard.board = ['X', 'O', 'X',
     'X', 'O', 'X',
     'O', 'X', 'O'];
@@ -58,7 +58,7 @@ test('game is a tie', () => {
   expect(gameLocigObj.gamenoWinner(gambeboard.board)).toBe(true);
 });
 
-test('game is not a tie', () => {
+test('game can continue there are space to play', () => {
   gambeboard.board = ['X', 'O', 'X',
     '', '', 'X',
     'X', 'X', 'O'];
