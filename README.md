@@ -1,4 +1,4 @@
-# Javascript Tic-Tac-Toe Project
+# JavaScript Tic-Tac-Toe Project
 
 A Tic Tac Toe game you can play in your browser!
 
